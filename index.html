@@ -1,0 +1,315 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
+  <title>Abbassi Group - Civil Engineering</title>
+  
+  <!-- AOS CSS (Animate On Scroll) -->
+  <link rel="stylesheet" href="https://unpkg.com/aos@2.3.1/dist/aos.css" />
+  
+  <!-- Friendly, Clean CSS Styling -->
+  <style>
+    /* Global Reset/Defaults */
+    * {
+      margin: 0; 
+      padding: 0; 
+      box-sizing: border-box;
+    }
+    body {
+      font-family: 'Helvetica Neue', Arial, sans-serif;
+      color: #333; 
+      line-height: 1.6; 
+      background-color: #f8f8f8;
+    }
+    
+    /* Header & Navigation */
+    header {
+      background-color: #2E3B55; /* A calm, friendly dark-blue shade */
+      color: #fff; 
+      padding: 15px 0;
+    }
+    nav {
+      width: 90%;
+      margin: 0 auto;
+      display: flex;
+      justify-content: space-between;
+      align-items: center;
+    }
+    nav .logo {
+      font-size: 1.5rem;
+      font-weight: bold;
+    }
+    nav a {
+      color: #fff;
+      text-decoration: none;
+      margin: 0 10px;
+      font-size: 1rem;
+      transition: color 0.3s ease;
+    }
+    nav a:hover {
+      color: #ffdd00; /* Gold accent on hover */
+    }
+    
+    /* Hero Section */
+    .hero {
+      background: url('https://images.unsplash.com/photo-1498050108023-c5249f4df085?ixlib=rb-4.0.3&auto=format&fit=crop&w=1567&q=80') 
+        center/cover no-repeat;
+      height: 70vh;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      text-align: center;
+      color: #fff;
+      padding: 0 20px;
+    }
+    .hero h1 {
+      font-size: 2.5rem;
+      margin-bottom: 10px;
+      text-shadow: 2px 2px 5px rgba(0,0,0,0.5);
+    }
+    .hero p {
+      font-size: 1.2rem;
+      max-width: 700px;
+      text-shadow: 1px 1px 3px rgba(0,0,0,0.5);
+    }
+    
+    /* Section Wrapper */
+    .section {
+      width: 90%;
+      max-width: 1200px;
+      margin: 50px auto;
+      background: #fff;
+      padding: 40px;
+      border-radius: 8px;
+      box-shadow: 0 2px 8px rgba(0,0,0,0.1);
+    }
+    .section h2 {
+      font-size: 2rem;
+      margin-bottom: 20px;
+      text-align: center;
+      color: #2E3B55;
+    }
+    .section p {
+      margin-bottom: 20px;
+    }
+    
+    /* About Section */
+    #about .content {
+      display: flex;
+      flex-wrap: wrap;
+      gap: 20px;
+    }
+    #about .about-text,
+    #about .about-image {
+      flex: 1 1 300px;
+    }
+    #about .about-image img {
+      width: 100%;
+      border-radius: 8px;
+    }
+    
+    /* Projects Section */
+    .projects {
+      display: flex;
+      flex-wrap: wrap;
+      gap: 20px;
+      justify-content: center;
+      margin-top: 20px;
+    }
+    .project-card {
+      background: #f9f9f9;
+      border-radius: 8px;
+      overflow: hidden;
+      box-shadow: 0 2px 6px rgba(0,0,0,0.05);
+      text-align: center;
+      flex: 1 1 calc(33% - 20px);
+      max-width: 300px;
+      min-width: 250px;
+      transition: transform 0.3s ease, box-shadow 0.3s ease;
+    }
+    .project-card:hover {
+      transform: translateY(-5px);
+      box-shadow: 0 4px 12px rgba(0,0,0,0.1);
+    }
+    .project-card img {
+      width: 100%;
+      height: 200px;
+      object-fit: cover;
+    }
+    .project-card h3 {
+      margin: 15px 0 10px;
+      color: #2E3B55;
+      font-size: 1.2rem;
+      padding: 0 10px;
+    }
+    .project-card p {
+      padding: 0 15px 15px 15px;
+      font-size: 0.95rem;
+      color: #555;
+    }
+    
+    /* Contact Section */
+    #contact .contact-info {
+      display: flex;
+      flex-wrap: wrap;
+      gap: 20px;
+      align-items: center;
+      justify-content: center;
+      text-align: center;
+    }
+    #contact .contact-info p {
+      font-size: 1rem;
+      margin: 5px 0;
+    }
+    
+    /* Footer */
+    footer {
+      background-color: #2E3B55;
+      color: #fff;
+      padding: 20px 0;
+      text-align: center;
+    }
+    footer p {
+      margin: 0;
+      font-size: 0.9rem;
+    }
+    
+    /* Responsive Design */
+    @media (max-width: 768px) {
+      .hero h1 {
+        font-size: 2rem;
+      }
+      .hero p {
+        font-size: 1rem;
+      }
+      .project-card {
+        flex: 1 1 100%;
+        max-width: 100%;
+      }
+      #about .content {
+        flex-direction: column;
+      }
+    }
+  </style>
+</head>
+<body>
+  
+  <!-- Header / Navigation -->
+  <header>
+    <nav>
+      <div class="logo">ABBASSI GROUP</div>
+      <div>
+        <a href="#home">Home</a>
+        <a href="#about">About</a>
+        <a href="#projects">Projects</a>
+        <a href="#contact">Contact</a>
+      </div>
+    </nav>
+  </header>
+  
+  <!-- Hero Section -->
+  <section class="hero" id="home" data-aos="fade-up">
+    <div>
+      <h1>Building with Excellence</h1>
+      <p>Your trusted partner in civil engineering, construction, and project management.</p>
+    </div>
+  </section>
+  
+  <!-- About Section -->
+  <section class="section" id="about" data-aos="fade-right">
+    <h2>About Abbassi Group</h2>
+    <div class="content">
+      <div class="about-text">
+        <p>
+          Abbassi Group is a leading civil engineering firm dedicated to delivering top-notch
+          construction projects and innovative solutions. With decades of combined experience,
+          our team offers expertise in structural design, building renovations, and large-scale
+          infrastructure developments. 
+        </p>
+        <p>
+          We believe in sustainable practices, cutting-edge technology, and the highest quality
+          standards in every project we undertake.
+        </p>
+      </div>
+      <div class="about-image">
+        <img 
+          src="https://images.unsplash.com/photo-1600585152672-45bbba178d70?ixlib=rb-4.0.3&auto=format&fit=crop&w=1052&q=80" 
+          alt="Construction team working" 
+        />
+      </div>
+    </div>
+  </section>
+  
+  <!-- Projects Section -->
+  <section class="section" id="projects" data-aos="fade-up">
+    <h2>Our Projects</h2>
+    <p>Take a look at some of our recent work that showcases our commitment to quality and innovation.</p>
+    <div class="projects">
+      <!-- Project Card 1 -->
+      <div class="project-card" data-aos="zoom-in" data-aos-delay="100">
+        <img 
+          src="https://images.unsplash.com/photo-1484223066203-0985f1b9f3aa?ixlib=rb-4.0.3&auto=format&fit=crop&w=870&q=80" 
+          alt="Completed building project" 
+        />
+        <h3>High-Rise Commercial Tower</h3>
+        <p>
+          A 35-story building in the heart of the city with modern architecture, sustainable materials, 
+          and cutting-edge technology.
+        </p>
+      </div>
+      <!-- Project Card 2 -->
+      <div class="project-card" data-aos="zoom-in" data-aos-delay="200">
+        <img 
+          src="https://images.unsplash.com/photo-1525231784203-f9f9c14f0ca3?ixlib=rb-4.0.3&auto=format&fit=crop&w=870&q=80" 
+          alt="Bridge infrastructure" 
+        />
+        <h3>Bridge Infrastructure</h3>
+        <p>
+          A major transportation project featuring advanced structural design and innovative solutions 
+          to ensure safety and durability.
+        </p>
+      </div>
+      <!-- Project Card 3 -->
+      <div class="project-card" data-aos="zoom-in" data-aos-delay="300">
+        <img 
+          src="https://images.unsplash.com/photo-1616648859190-cdfef475f57a?ixlib=rb-4.0.3&auto=format&fit=crop&w=870&q=80" 
+          alt="Road and highway construction" 
+        />
+        <h3>Highway Expansion</h3>
+        <p>
+          Upgrading critical road networks to improve connectivity and reduce travel time, 
+          ensuring smoother transport for local communities.
+        </p>
+      </div>
+    </div>
+  </section>
+  
+  <!-- Contact Section -->
+  <section class="section" id="contact" data-aos="fade-up">
+    <h2>Contact Us</h2>
+    <p>
+      Ready to discuss your next project? Get in touch and let’s bring your vision to life!
+    </p>
+    <div class="contact-info">
+      <p><strong>Email:</strong> info@abbassigroup.com</p>
+      <p><strong>Phone:</strong> +1 234 567 890</p>
+      <p><strong>Address:</strong> 1234 Main St, Your City, Country</p>
+    </div>
+  </section>
+  
+  <!-- Footer -->
+  <footer>
+    <p>&copy; 2025 Abbassi Group. All rights reserved.</p>
+  </footer>
+  
+  <!-- AOS JS -->
+  <script src="https://unpkg.com/aos@2.3.1/dist/aos.js"></script>
+  <script>
+    AOS.init({
+      duration: 1000, // animation duration
+      once: true      // whether animation should happen only once
+    });
+  </script>
+</body>
+</html>
