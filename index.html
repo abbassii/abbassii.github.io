@@ -21,7 +21,7 @@
       color: #333; 
       line-height: 1.6; 
       background-color: #f8f8f8;
-      overflow-x: hidden; /* Prevent any horizontal scroll from the canvas */
+      overflow-x: hidden; /* in case of any overflow from animations */
     }
     
     /* Header & Navigation */
@@ -52,9 +52,13 @@
       color: #ffdd00; /* Gold accent on hover */
     }
     
-    /* Hero Section with Canvas Overlay */
+    /* Hero Section */
     .hero {
-      position: relative; 
+      background: 
+        /* Fallback background color in case the image doesn't load */
+        #333 
+        url('https://images.unsplash.com/photo-1603326738920-909ce619b22e?ixlib=rb-4.0.3&auto=format&fit=crop&w=1567&q=80') 
+        center/cover no-repeat;
       height: 70vh;
       display: flex;
       align-items: center;
@@ -62,27 +66,7 @@
       text-align: center;
       color: #fff;
       padding: 0 20px;
-      background: 
-        /* Fallback background in case the image doesn't load */
-        #333 
-        url('https://images.unsplash.com/photo-1564866657317-13a08841268f?ixlib=rb-4.0.3&auto=format&fit=crop&w=1567&q=80') 
-        center/cover no-repeat;
-      overflow: hidden; /* Hide overflow if canvas draws outside container */
-    }
-    /* Canvas styles: layered behind hero text but in front of background */
-    #heroCanvas {
-      position: absolute;
-      top: 0;
-      left: 0;
-      width: 100%;
-      height: 100%;
-      z-index: 1; /* Put canvas behind text but above background image */
-      pointer-events: none; /* Let clicks pass through the canvas */
-    }
-    .hero-content {
-      position: relative;
-      z-index: 2; /* Make text appear above the canvas */
-      max-width: 700px;
+      position: relative; /* useful if you add canvas or overlay elements later */
     }
     .hero h1 {
       font-size: 2.5rem;
@@ -91,6 +75,7 @@
     }
     .hero p {
       font-size: 1.2rem;
+      max-width: 700px;
       text-shadow: 1px 1px 3px rgba(0,0,0,0.5);
     }
     
@@ -228,10 +213,9 @@
     </nav>
   </header>
   
-  <!-- Hero Section with a Canvas Overlay for a small animation -->
+  <!-- Hero Section -->
   <section class="hero" id="home" data-aos="fade-up">
-    <canvas id="heroCanvas"></canvas>
-    <div class="hero-content">
+    <div>
       <h1>Building with Excellence</h1>
       <p>Your trusted partner in civil engineering, construction, and project management.</p>
     </div>
@@ -255,7 +239,7 @@
       </div>
       <div class="about-image">
         <img 
-          src="https://images.unsplash.com/photo-1600585152672-45bbba178d70?ixlib=rb-4.0.3&auto=format&fit=crop&w=1052&q=80" 
+          src="https://images.unsplash.com/photo-1508898578281-774ac4893a5b?ixlib=rb-4.0.3&auto=format&fit=crop&w=1052&q=80" 
           alt="Construction team working" 
         />
       </div>
@@ -270,7 +254,7 @@
       <!-- Project Card 1 -->
       <div class="project-card" data-aos="zoom-in" data-aos-delay="100">
         <img 
-          src="https://images.unsplash.com/photo-1484223066203-0985f1b9f3aa?ixlib=rb-4.0.3&auto=format&fit=crop&w=870&q=80" 
+          src="https://images.unsplash.com/photo-1600585152672-45bbba178d70?ixlib=rb-4.0.3&auto=format&fit=crop&w=870&q=80" 
           alt="Skyscraper under construction" 
         />
         <h3>High-Rise Commercial Tower</h3>
@@ -324,69 +308,13 @@
     <p>&copy; 2025 Abbassi Group. All rights reserved.</p>
   </footer>
   
-  <!-- AOS JS -->
+  <!-- AOS JS (for scroll animations) -->
   <script src="https://unpkg.com/aos@2.3.1/dist/aos.js"></script>
   <script>
     AOS.init({
       duration: 1000, // animation duration
       once: true      // whether animation should happen only once
     });
-  </script>
-
-  <!-- Canvas Animation Script -->
-  <script>
-    const canvas = document.getElementById('heroCanvas');
-    const ctx = canvas.getContext('2d');
-    
-    // Resize canvas to fit hero section
-    function resizeCanvas() {
-      canvas.width = canvas.offsetWidth;
-      canvas.height = canvas.offsetHeight;
-    }
-    window.addEventListener('resize', resizeCanvas);
-    resizeCanvas();
-
-    // Create an array of floating particles
-    const particles = [];
-    const PARTICLE_COUNT = 50;
-
-    function initParticles() {
-      for (let i = 0; i < PARTICLE_COUNT; i++) {
-        particles.push({
-          x: Math.random() * canvas.width,
-          y: Math.random() * canvas.height,
-          radius: Math.random() * 3 + 1,
-          // random speed/direction
-          vx: (Math.random() - 0.5) * 0.5,
-          vy: (Math.random() - 0.5) * 0.5,
-          color: '#ffdd00' // golden color
-        });
-      }
-    }
-
-    function drawParticles() {
-      ctx.clearRect(0, 0, canvas.width, canvas.height);
-      for (let p of particles) {
-        // Move each particle
-        p.x += p.vx;
-        p.y += p.vy;
-        // Wrap around edges
-        if (p.x < 0) p.x = canvas.width;
-        if (p.x > canvas.width) p.x = 0;
-        if (p.y < 0) p.y = canvas.height;
-        if (p.y > canvas.height) p.y = 0;
-        
-        // Draw particle
-        ctx.beginPath();
-        ctx.arc(p.x, p.y, p.radius, 0, Math.PI * 2, false);
-        ctx.fillStyle = p.color;
-        ctx.fill();
-      }
-      requestAnimationFrame(drawParticles);
-    }
-
-    initParticles();
-    drawParticles();
   </script>
 </body>
 </html>
