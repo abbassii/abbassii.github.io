@@ -6,9 +6,9 @@
   <title>Abbassi Group - Civil Engineering</title>
   
   <!-- AOS CSS (Animate On Scroll) -->
-  <link rel="stylesheet" href="https://unpkg.com/aos@2.3.1/dist/aos.css"/>
-
-  <!-- Basic Styling -->
+  <link rel="stylesheet" href="https://unpkg.com/aos@2.3.1/dist/aos.css" />
+  
+  <!-- Friendly, Clean CSS Styling -->
   <style>
     /* Global Reset/Defaults */
     * {
@@ -17,68 +17,84 @@
       box-sizing: border-box;
     }
     body {
-      font-family: "Helvetica Neue", Arial, sans-serif;
-      color: #333;
-      line-height: 1.6;
+      font-family: 'Helvetica Neue', Arial, sans-serif;
+      color: #333; 
+      line-height: 1.6; 
       background-color: #f8f8f8;
-      overflow-x: hidden; /* no horizontal scroll */
+      overflow-x: hidden; /* Prevent any horizontal scroll from the canvas */
     }
-
+    
     /* Header & Navigation */
     header {
       background-color: #2E3B55; /* A calm, professional dark-blue shade */
-      color: #fff;
+      color: #fff; 
       padding: 15px 0;
     }
     nav {
       width: 90%;
       margin: 0 auto;
       display: flex;
-      align-items: center;
       justify-content: space-between;
+      align-items: center;
     }
     nav .logo {
       font-size: 1.5rem;
       font-weight: bold;
     }
-    nav .menu a {
+    nav a {
       color: #fff;
       text-decoration: none;
       margin: 0 10px;
       font-size: 1rem;
       transition: color 0.3s ease;
     }
-    nav .menu a:hover {
+    nav a:hover {
       color: #ffdd00; /* Gold accent on hover */
     }
-
-    /* Hero Section */
+    
+    /* Hero Section with Canvas Overlay */
     .hero {
-      background:
-        #333 /* fallback if image doesn't load */
-        url('https://images.unsplash.com/photo-1581092788377-a2d4ac2b82f4?ixlib=rb-4.0.3&auto=format&fit=crop&w=1474&q=80')
-        center/cover no-repeat;
+      position: relative; 
       height: 70vh;
       display: flex;
       align-items: center;
       justify-content: center;
       text-align: center;
       color: #fff;
-      position: relative;
       padding: 0 20px;
+      background: 
+        /* Fallback background in case the image doesn't load */
+        #333 
+        url('https://images.unsplash.com/photo-1564866657317-13a08841268f?ixlib=rb-4.0.3&auto=format&fit=crop&w=1567&q=80') 
+        center/cover no-repeat;
+      overflow: hidden; /* Hide overflow if canvas draws outside container */
+    }
+    /* Canvas styles: layered behind hero text but in front of background */
+    #heroCanvas {
+      position: absolute;
+      top: 0;
+      left: 0;
+      width: 100%;
+      height: 100%;
+      z-index: 1; /* Put canvas behind text but above background image */
+      pointer-events: none; /* Let clicks pass through the canvas */
+    }
+    .hero-content {
+      position: relative;
+      z-index: 2; /* Make text appear above the canvas */
+      max-width: 700px;
     }
     .hero h1 {
       font-size: 2.5rem;
-      margin-bottom: 15px;
+      margin-bottom: 10px;
       text-shadow: 2px 2px 5px rgba(0,0,0,0.5);
     }
     .hero p {
       font-size: 1.2rem;
-      max-width: 700px;
       text-shadow: 1px 1px 3px rgba(0,0,0,0.5);
     }
-
-    /* Main Section Wrapper */
+    
+    /* Section Wrapper */
     .section {
       width: 90%;
       max-width: 1200px;
@@ -97,7 +113,7 @@
     .section p {
       margin-bottom: 20px;
     }
-
+    
     /* About Section */
     #about .content {
       display: flex;
@@ -111,9 +127,8 @@
     #about .about-image img {
       width: 100%;
       border-radius: 8px;
-      object-fit: cover;
     }
-
+    
     /* Projects Section */
     .projects {
       display: flex;
@@ -153,7 +168,7 @@
       font-size: 0.95rem;
       color: #555;
     }
-
+    
     /* Contact Section */
     #contact .contact-info {
       display: flex;
@@ -167,7 +182,7 @@
       font-size: 1rem;
       margin: 5px 0;
     }
-
+    
     /* Footer */
     footer {
       background-color: #2E3B55;
@@ -179,7 +194,7 @@
       margin: 0;
       font-size: 0.9rem;
     }
-
+    
     /* Responsive Design */
     @media (max-width: 768px) {
       .hero h1 {
@@ -199,12 +214,12 @@
   </style>
 </head>
 <body>
-
+  
   <!-- Header / Navigation -->
   <header>
     <nav>
       <div class="logo">ABBASSI GROUP</div>
-      <div class="menu">
+      <div>
         <a href="#home">Home</a>
         <a href="#about">About</a>
         <a href="#projects">Projects</a>
@@ -212,40 +227,41 @@
       </div>
     </nav>
   </header>
-
-  <!-- Hero Section -->
+  
+  <!-- Hero Section with a Canvas Overlay for a small animation -->
   <section class="hero" id="home" data-aos="fade-up">
-    <div>
+    <canvas id="heroCanvas"></canvas>
+    <div class="hero-content">
       <h1>Building with Excellence</h1>
       <p>Your trusted partner in civil engineering, construction, and project management.</p>
     </div>
   </section>
-
+  
   <!-- About Section -->
   <section class="section" id="about" data-aos="fade-right">
     <h2>About Abbassi Group</h2>
     <div class="content">
       <div class="about-text">
         <p>
-          Abbassi Group is a leading civil engineering firm dedicated to delivering
-          top-notch construction projects and innovative solutions. With decades of combined
-          experience, our team offers expertise in structural design, building renovations,
-          and large-scale infrastructure developments.
+          Abbassi Group is a leading civil engineering firm dedicated to delivering top-notch
+          construction projects and innovative solutions. With decades of combined experience,
+          our team offers expertise in structural design, building renovations, and large-scale
+          infrastructure developments. 
         </p>
         <p>
-          We believe in sustainable practices, cutting-edge technology, and the highest
-          quality standards in every project we undertake.
+          We believe in sustainable practices, cutting-edge technology, and the highest quality
+          standards in every project we undertake.
         </p>
       </div>
       <div class="about-image">
         <img 
-          src="https://images.unsplash.com/photo-1610576663267-5378a81d7685?ixlib=rb-4.0.3&auto=format&fit=crop&w=1470&q=80" 
+          src="https://images.unsplash.com/photo-1600585152672-45bbba178d70?ixlib=rb-4.0.3&auto=format&fit=crop&w=1052&q=80" 
           alt="Construction team working" 
         />
       </div>
     </div>
   </section>
-
+  
   <!-- Projects Section -->
   <section class="section" id="projects" data-aos="fade-up">
     <h2>Our Projects</h2>
@@ -253,9 +269,9 @@
     <div class="projects">
       <!-- Project Card 1 -->
       <div class="project-card" data-aos="zoom-in" data-aos-delay="100">
-        <img
-          src="https://images.unsplash.com/photo-1600803904263-0b3ca35f4b35?ixlib=rb-4.0.3&auto=format&fit=crop&w=870&q=80"
-          alt="High-Rise Construction" 
+        <img 
+          src="https://images.unsplash.com/photo-1484223066203-0985f1b9f3aa?ixlib=rb-4.0.3&auto=format&fit=crop&w=870&q=80" 
+          alt="Skyscraper under construction" 
         />
         <h3>High-Rise Commercial Tower</h3>
         <p>
@@ -265,9 +281,9 @@
       </div>
       <!-- Project Card 2 -->
       <div class="project-card" data-aos="zoom-in" data-aos-delay="200">
-        <img
-          src="https://images.unsplash.com/photo-1560523160-d70f84f9a747?ixlib=rb-4.0.3&auto=format&fit=crop&w=870&q=80"
-          alt="Bridge Infrastructure" 
+        <img 
+          src="https://images.unsplash.com/photo-1581090700227-3ed521b91fbd?ixlib=rb-4.0.3&auto=format&fit=crop&w=870&q=80" 
+          alt="Bridge infrastructure project" 
         />
         <h3>Bridge Infrastructure</h3>
         <p>
@@ -277,19 +293,19 @@
       </div>
       <!-- Project Card 3 -->
       <div class="project-card" data-aos="zoom-in" data-aos-delay="300">
-        <img
-          src="https://images.unsplash.com/photo-1568572933382-74d440642117?ixlib=rb-4.0.3&auto=format&fit=crop&w=870&q=80"
-          alt="Highway Expansion" 
+        <img 
+          src="https://images.unsplash.com/photo-1504730656992-d4602bc25a1d?ixlib=rb-4.0.3&auto=format&fit=crop&w=870&q=80" 
+          alt="Highway expansion" 
         />
         <h3>Highway Expansion</h3>
         <p>
-          Upgrading critical road networks to improve connectivity and reduce travel time,
+          Upgrading critical road networks to improve connectivity and reduce travel time, 
           ensuring smoother transport for local communities.
         </p>
       </div>
     </div>
   </section>
-
+  
   <!-- Contact Section -->
   <section class="section" id="contact" data-aos="fade-up">
     <h2>Contact Us</h2>
@@ -302,19 +318,75 @@
       <p><strong>Address:</strong> 1234 Main St, Your City, Country</p>
     </div>
   </section>
-
+  
   <!-- Footer -->
   <footer>
     <p>&copy; 2025 Abbassi Group. All rights reserved.</p>
   </footer>
-
-  <!-- AOS JS (for scroll-based animations) -->
+  
+  <!-- AOS JS -->
   <script src="https://unpkg.com/aos@2.3.1/dist/aos.js"></script>
   <script>
     AOS.init({
-      duration: 1000,  // animation duration in ms
-      once: true       // whether animation should happen only once
+      duration: 1000, // animation duration
+      once: true      // whether animation should happen only once
     });
+  </script>
+
+  <!-- Canvas Animation Script -->
+  <script>
+    const canvas = document.getElementById('heroCanvas');
+    const ctx = canvas.getContext('2d');
+    
+    // Resize canvas to fit hero section
+    function resizeCanvas() {
+      canvas.width = canvas.offsetWidth;
+      canvas.height = canvas.offsetHeight;
+    }
+    window.addEventListener('resize', resizeCanvas);
+    resizeCanvas();
+
+    // Create an array of floating particles
+    const particles = [];
+    const PARTICLE_COUNT = 50;
+
+    function initParticles() {
+      for (let i = 0; i < PARTICLE_COUNT; i++) {
+        particles.push({
+          x: Math.random() * canvas.width,
+          y: Math.random() * canvas.height,
+          radius: Math.random() * 3 + 1,
+          // random speed/direction
+          vx: (Math.random() - 0.5) * 0.5,
+          vy: (Math.random() - 0.5) * 0.5,
+          color: '#ffdd00' // golden color
+        });
+      }
+    }
+
+    function drawParticles() {
+      ctx.clearRect(0, 0, canvas.width, canvas.height);
+      for (let p of particles) {
+        // Move each particle
+        p.x += p.vx;
+        p.y += p.vy;
+        // Wrap around edges
+        if (p.x < 0) p.x = canvas.width;
+        if (p.x > canvas.width) p.x = 0;
+        if (p.y < 0) p.y = canvas.height;
+        if (p.y > canvas.height) p.y = 0;
+        
+        // Draw particle
+        ctx.beginPath();
+        ctx.arc(p.x, p.y, p.radius, 0, Math.PI * 2, false);
+        ctx.fillStyle = p.color;
+        ctx.fill();
+      }
+      requestAnimationFrame(drawParticles);
+    }
+
+    initParticles();
+    drawParticles();
   </script>
 </body>
 </html>
